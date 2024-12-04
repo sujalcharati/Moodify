@@ -13,9 +13,10 @@
     --foreground: #ededed;
   }
 }
-
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* background: #7cd9c3 ; */
+  font-family: 'Dancing Script', cursive;
+  background-color: #7cd9c3; /* Dark background color */
+  color: brown;
 }
