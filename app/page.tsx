@@ -1,5 +1,6 @@
+"use client"
 import Link from "next/link";
-
+import {getAPI} from "./Components/Happy";
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -15,7 +16,7 @@ export default function Home() {
       </div>
       </div>
       <div className="grid grid-cols-2 gap-4">
-        <Link href="/happy" className="p-4 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 text-center">Happy
+        <Link href="/happy" className="p-4 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 text-center" onClick={ getAPI }>Happy
         </Link>
         <Link href="/sad" className="p-4 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 text-center">Sad</Link>
         <Link href="/excited" className="p-4 bg-yellow-500 text-white rounded-lg shadow-md hover:bg-yellow-600 text-center">Excited</Link>
