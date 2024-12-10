@@ -1,30 +1,34 @@
-import { error } from "console";
+"use client"
 import dotenv from "dotenv";
 dotenv.config();
-import React from 'react';
+import React, { useState } from 'react';
+// const client_id= "";
+// const client_secret =" ";
+
 
 export const getAPI = async () => {
+
+    // const [token,setToken]=useState('');
     try {
+        console.log('access to api calling ...');
         const req = await fetch('https://accounts.spotify.com/api/token', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + btoa(`${process.env.client_id}:${process.env.client_secret}`)
             },
-            body: new URLSearchParams({
-            'grant_type': 'client_credentials'
-            })
+            body:
+            `grant_type=client_credentials&client_id=${client_id}&client_secret=${client_secret}`
+            
         });
          const token = await req.json();
-        console.log(token);
-        return token ;
+         console.log(token.access_token);
+        //  console.log(token);
     } catch (e) {
-        if (e instanceof Error) {
-            console.error('Error in API handling:', e.message);
-        } else {
-            console.error('Unknown error in API handling:', e);
+        
+            console.error('Error in API handling:', e);
+        
         }
-    }
+    
 };
 
 export const Happy: React.FC = () => {
