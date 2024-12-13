@@ -2,13 +2,13 @@
 import dotenv from "dotenv";
 dotenv.config();
 import React, { useState } from 'react';
-// const client_id= "";
-// const client_secret =" ";
+const client_id= "";
+const client_secret ="";
 
 
 export const getAPI = async () => {
 
-    // const [token,setToken]=useState('');
+    const [new_token,setNew_token] = useState('');
     try {
         console.log('access to api calling ...');
         const req = await fetch('https://accounts.spotify.com/api/token', {
@@ -21,6 +21,8 @@ export const getAPI = async () => {
             
         });
          const token = await req.json();
+         setNew_token(token);
+         console.log(new_token);
          console.log(token.access_token);
         //  console.log(token);
     } catch (e) {
@@ -45,7 +47,7 @@ export const Happy: React.FC = () => {
             >
                 <div className=' text-white'>
 
-            it's happy page
+            {}
             </div>
             </div>
         </div>
