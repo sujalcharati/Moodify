@@ -7,8 +7,6 @@ const client_secret ="";
 
 
 export const getAPI = async () => {
-
-    const [new_token,setNew_token] = useState('');
     try {
         console.log('access to api calling ...');
         const req = await fetch('https://accounts.spotify.com/api/token', {
@@ -21,10 +19,10 @@ export const getAPI = async () => {
             
         });
          const token = await req.json();
-         setNew_token(token);
-         console.log(new_token);
          console.log(token.access_token);
-        //  console.log(token);
+        
+         return token;
+        
     } catch (e) {
         
             console.error('Error in API handling:', e);
@@ -34,6 +32,47 @@ export const getAPI = async () => {
 };
 
 export const Happy: React.FC = () => {
+
+    async function getArtist() {
+        try {
+            const token = await getAPI();
+            const artist = await fetch('https://api.spotify.com/v1/artists/4YRxDV8wJFPHPTeXepOstw?si=EDEXGBDgRl6z1nYq35rplw', {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": "Bearer " + token.access_token
+                },
+            });
+
+            const getplaylist = await artist.json();
+            console.log(getplaylist);
+            return getplaylist;
+        } catch (e) {
+            console.error('Error fetching artist:', e);
+        }
+    }
+
+    const [playlist, setPlaylist] = useState(null);
+
+    React.useEffect(() => {
+        getArtist().then(data => setPlaylist(data));
+    }, []);
+    //     try {
+    //         const token = await getAPI();
+    //         const artist = await fetch('https://api.spotify.com/v1/artists/4YRxDV8wJFPHPTeXepOstw?si=EDEXGBDgRl6z1nYq35rplw', {
+    //             method: "GET",
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 "Authorization": "Bearer " + token.access_token
+    //             },
+    //         });
+
+    //         const getplaylist =await artist.json();
+    //         return getplaylist;
+    //     } catch (e) {
+    //         console.error('Error fetching artist:', e);
+    //     }
+    // }
     return (
         <div>
              <div
@@ -47,7 +86,11 @@ export const Happy: React.FC = () => {
             >
                 <div className=' text-white'>
 
-            {}
+                <h1 className="text-6xl font-bold mb-4 text-center">Your thing's </h1>
+                <div className="bg-white w-96 h-128 p-4 rounded-lg shadow-lg overflow-y-auto">
+                    <h2 className="text-2xl font-semibold mb-4 text-center text-black">Your Playlist</h2>
+                    {/* Playlist items will be rendered here */}
+                </div>
             </div>
             </div>
         </div>
