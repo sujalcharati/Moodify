@@ -33,7 +33,7 @@ export const getAPI = async () => {
 
 export const Happy: React.FC = () => {
 
-    async function getArtist() {
+    async function getArtistImage() {
         try {
             const token = await getAPI();
             const artist = await fetch('https://api.spotify.com/v1/artists/4YRxDV8wJFPHPTeXepOstw?si=EDEXGBDgRl6z1nYq35rplw', {
@@ -59,8 +59,29 @@ export const Happy: React.FC = () => {
     const [playlist, setPlaylist] = useState<Playlist | null>(null);
 
     React.useEffect(() => {
-        getArtist().then(data => setPlaylist(data));
+        getArtistImage().then(data => setPlaylist(data));
     }, []);
+
+    async function getAlbum() {
+        try{
+            const token = await getAPI();
+            const album = await fetch('https://api.spotify.com/v1/artists/4YRxDV8wJFPHPTeXepOstw?si=EDEXGBDgRl6z1nYq35rplw', {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": "Bearer " + token.access_token
+                },
+            });
+            const getalbumlist = await album.json();
+            console.log( getalbumlist );
+            
+        } catch (e) {
+            console.error('Error fetching artist:', e);
+        }
+        }
+         
+        
+    }
    
     return (
         <div>
