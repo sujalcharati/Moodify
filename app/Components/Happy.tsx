@@ -45,27 +45,27 @@ export const Happy: React.FC = () => {
             });
 
             const getplaylist = await artist.json();
-            console.log(getplaylist);
+            // console.log(getplaylist);
             return getplaylist;
         } catch (e) {
             console.error('Error fetching artist:', e);
         }
     }
 
-    interface Playlist {
+    interface Artist {
         images: { url: string }[];
     }
 
-    const [playlist, setPlaylist] = useState<Playlist | null>(null);
+    const [Artist, setArtist] = useState<Artist | null>(null);
 
     React.useEffect(() => {
-        getArtistImage().then(data => setPlaylist(data));
+        getArtistImage().then(data => setArtist(data));
     }, []);
 
     async function getAlbum() {
         try{
             const token = await getAPI();
-            const album = await fetch('https://api.spotify.com/v1/artists/4YRxDV8wJFPHPTeXepOstw?si=EDEXGBDgRl6z1nYq35rplw', {
+            const album = await fetch('https://api.spotify.com/v1/artists/4YRxDV8wJFPHPTeXepOstw?si=EDEXGBDgRl6z1nYq35rplw/top-tracks', {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json',
@@ -73,17 +73,27 @@ export const Happy: React.FC = () => {
                 },
             });
             const getalbumlist = await album.json();
-            console.log( getalbumlist );
-            
+            console.log('getting album list..');
+            console.log(getalbumlist);
+            return getalbumlist;
         } catch (e) {
             console.error('Error fetching artist:', e);
         }
-        }
-         
-        
     }
-   
-    return (
+
+
+    interface Playlist {
+        images: { url: string }[];
+    }
+         
+    const [playlist, setPlaylist] = useState<Playlist | null>(null);
+
+    React.useEffect(() => {
+        getAlbum().then(data => setPlaylist(data));
+    }, []);
+
+
+return (
         <div>
              <div
                 style={{
