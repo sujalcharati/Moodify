@@ -103,9 +103,7 @@ export const Happy: React.FC = () => {
         }}
       >
           <h1 className="text-6xl font-bold mb-4 text-center text-white">Your thing's </h1>
-
-          
-            <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg w-96 h-128 p-4 rounded-lg shadow-lg overflow-y-auto">
+         <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg w-96 h-128 p-4 rounded-lg shadow-lg overflow-y-auto">
                 <h2 className=" text-white">
               Your Playlist
             </h2>
@@ -151,11 +149,11 @@ export const Happy: React.FC = () => {
                 ))}
               </ul>             
             </div>
-            <div className="p-4 bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg shadow-md w-80 fixed top-0 left-0 ml-4 mt-4"></div>
+            
               
              
             </div>
             </div>
-    //   </div>
+   
   );
 };
