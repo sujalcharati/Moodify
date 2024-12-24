@@ -2,8 +2,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 import React, { useState } from "react";
-const client_id = "";
-const client_secret = "";
+const client_id = "96f499b29dc0413fb1954b23adef82c4";
+const client_secret = "3401f68cf23a4fe3a4d262cd30070d05";
 
 export const getAPI = async () => {
   try {
@@ -25,6 +25,9 @@ export const getAPI = async () => {
 };
 
 export const Happy: React.FC = () => {
+    const [showPreview, setShowPreview] = useState(false);
+
+    const [id,setId] =useState('');
   async function getAlbum() {
     try {
       const token = await getAPI();
@@ -39,24 +42,40 @@ export const Happy: React.FC = () => {
       }
     );
       const getalbumlist = await album.json();
-      console.log("getting album list..");
-      console.log(getalbumlist.items);
+      console.log(getalbumlist.items[0].id);
+      setId(getalbumlist.items[0].id);
+
       return getalbumlist;
     } catch (e) {
       console.error("Error fetching artist:", e);
     }
   }
+ getAlbum();
+ async function getSongs() {
+    try {
+        const token = await getAPI();
+        const tracks = await fetch(
+      `https://api.spotify.com/v1/albums/${id}/tracks`,
+      {
+        method: "GET",
+        headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.access_token,
+        },
+      }
+    );
 
-  interface Playlist {
-    images: { url: string }[];
-  }
+    const songs = await tracks.json();
+     console.log(songs);
+}
+     catch (e) {
+        console.error("Error fetching artist:", e);
+      }
 
-  const [playlist, setPlaylist] = useState<Playlist | null>(null);
-  const [showPreview, setShowPreview] = useState(false);
-
-  React.useEffect(() => {
-    getAlbum().then((data) => setPlaylist(data));
-  }, []);
+ }   
+ 
+getSongs();
+  
 
   return (
     <div>
@@ -78,14 +97,7 @@ export const Happy: React.FC = () => {
             <p className="text-gray-400 text-center"> 
                 Enjoy your favorite tunes and discover new music!
               </p>
-            {playlist?.images && playlist.images.length > 0 && (
-              <img
-                src={playlist.images[0].url}
-                alt="Playlist Cover"
-                className="w-full h-auto rounded-lg"
-              />
-            )}
-           
+         
 
               <button
                 onClick={() => setShowPreview(!showPreview)}
