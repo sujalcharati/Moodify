@@ -87,6 +87,7 @@ export const Happy: React.FC = () => {
     }
          
     const [playlist, setPlaylist] = useState<Playlist | null>(null);
+    const [showPreview, setShowPreview] = useState(false);
 
     React.useEffect(() => {
         getAlbum().then(data => setPlaylist(data));
@@ -112,13 +113,24 @@ return (
 {playlist?.images && playlist.images.length > 0 && (
     <img src={playlist.images[0].url} alt="Playlist Cover" className="w-full h-auto rounded-lg" />
 )}
-{/* <iframe 
-  src="https://open.spotify.com/embed/artist/4YRxDV8wJFPHPTeXepOstw" 
-  width="300" 
-  height="380" 
-//   allowTransparency="true" 
-  allow="encrypted-media">
-</iframe> */}
+
+
+    <div>
+        <button 
+            onClick={() => setShowPreview(!showPreview)} 
+            className="bg-blue-500 text-white px-4 py-2 rounded-lg mb-4"
+        >
+            {showPreview ? 'Hide Preview' : 'Show Preview'}
+        </button>
+        {showPreview && (
+            <iframe 
+                src="https://open.spotify.com/embed/artist/4YRxDV8wJFPHPTeXepOstw" 
+                width="300" 
+                height="380" 
+                allow="encrypted-media">
+            </iframe>
+        )}
+    </div>
                 </div>
             </div>
             </div>
