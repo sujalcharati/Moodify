@@ -2,8 +2,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 import React, { useState } from "react";
-const client_id = "";
-const client_secret = "";
+const client_id = "96f499b29dc0413fb1954b23adef82c4";
+const client_secret = "3401f68cf23a4fe3a4d262cd30070d05";
 
 export const getAPI = async () => {
   try {
@@ -25,51 +25,19 @@ export const getAPI = async () => {
 };
 
 export const Happy: React.FC = () => {
-  async function getArtistImage() {
-    try {
-      const token = await getAPI();
-      const artist = await fetch(
-        "https://api.spotify.com/v1/artists/4YRxDV8wJFPHPTeXepOstw?si=EDEXGBDgRl6z1nYq35rplw",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token.access_token,
-          },
-        }
-      );
-
-      const getplaylist = await artist.json();
-      // console.log(getplaylist);
-      return getplaylist;
-    } catch (e) {
-      console.error("Error fetching artist:", e);
-    }
-  }
-
-  interface Artist {
-    images: { url: string }[];
-  }
-
-  const [Artist, setArtist] = useState<Artist | null>(null);
-
-  React.useEffect(() => {
-    getArtistImage().then((data) => setArtist(data));
-  }, []);
-
   async function getAlbum() {
     try {
       const token = await getAPI();
-      const album = await fetch(
-        "https://api.spotify.com/v1/artists/4YRxDV8wJFPHPTeXepOstw?si=EDEXGBDgRl6z1nYq35rplw/top-tracks",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token.access_token,
-          },
-        }
-      );
+    const album = await fetch(
+      "https://api.spotify.com/v1/artists/4YRxDV8wJFPHPTeXepOstw/albums?include_groups=album,single&market=US&limit=10&offset=5",
+      {
+        method: "GET",
+        headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.access_token,
+        },
+      }
+    );
       const getalbumlist = await album.json();
       console.log("getting album list..");
       console.log(getalbumlist);
