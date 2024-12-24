@@ -2,8 +2,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 import React, { useState } from "react";
-const client_id = "96f499b29dc0413fb1954b23adef82c4";
-const client_secret = "3401f68cf23a4fe3a4d262cd30070d05";
+const client_id = "";
+const client_secret = "";
 
 export const getAPI = async () => {
   try {
@@ -51,6 +51,8 @@ export const Happy: React.FC = () => {
     }
   }
  getAlbum();
+ const [songname, setSongname] =useState('');
+ const [url,setUrl] = useState('');
  async function getSongs() {
     try {
         const token = await getAPI();
@@ -66,14 +68,35 @@ export const Happy: React.FC = () => {
     );
 
     const songs = await tracks.json();
-     console.log(songs);
+    const songNames = songs.items.map((song: any) => song.name);
+    const songUrls = songs.items.map((song: any) => song.external_urls.spotify);
+    songNames.forEach((name: string, index: number) => {
+        console.log(`Song ${index + 1}: ${name}`);
+    });
+
+    // Set the first song initially
+    setSongname(songNames[0]);
+    setUrl(songUrls[0]);
+
+    // Function to cycle through songs
+    let currentSongIndex = 0;
+    const cycleSongs = () => {
+        currentSongIndex = (currentSongIndex + 1) % songNames.length;
+        setSongname(songNames[currentSongIndex]);
+        setUrl(songUrls[currentSongIndex]);
+    };
+    cycleSongs();
+
+    // Cycle songs every 5 seconds
+    setSongname(songNames);
+    setUrl(songUrls[0]); // Set the URL of the first song
+    console.log(songs.items);
 }
      catch (e) {
         console.error("Error fetching artist:", e);
       }
-
  }   
- 
+
 getSongs();
   
 
@@ -97,7 +120,11 @@ getSongs();
             <p className="text-gray-400 text-center"> 
                 Enjoy your favorite tunes and discover new music!
               </p>
-         
+                {/* <p className="text-white text-center">{songname}</p> */}
+                <div>
+  <h3>Track: {songname}</h3>
+  <a href={`${url}`} target="_blank">Play on Spotify</a>
+</div>
 
               <button
                 onClick={() => setShowPreview(!showPreview)}
@@ -137,3 +164,5 @@ getSongs();
    
   );
 };
+
+
