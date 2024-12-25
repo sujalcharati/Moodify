@@ -68,29 +68,11 @@ export const Happy: React.FC = () => {
     );
 
     const songs = await tracks.json();
-    const songNames = songs.items.map((song: any) => song.name);
-    const songUrls = songs.items.map((song: any) => song.external_urls.spotify);
-    songNames.forEach((name: string, index: number) => {
-        console.log(`Song ${index + 1}: ${name}`);
-    });
-
-    // Set the first song initially
-    setSongname(songNames[0]);
-    setUrl(songUrls[0]);
-
-    // Function to cycle through songs
-    let currentSongIndex = 0;
-    const cycleSongs = () => {
-        currentSongIndex = (currentSongIndex + 1) % songNames.length;
-        setSongname(songNames[currentSongIndex]);
-        setUrl(songUrls[currentSongIndex]);
-    };
-    cycleSongs();
-
-    // Cycle songs every 5 seconds
-    setSongname(songNames);
-    setUrl(songUrls[0]); // Set the URL of the first song
     console.log(songs.items);
+    // const allsongs = songs.items.map((song: any) => {
+    //   setSongname(allsongs);
+    //   setUrl(song.external_urls.spotify);
+    // });
 }
      catch (e) {
         console.error("Error fetching artist:", e);
@@ -120,11 +102,9 @@ getSongs();
             <p className="text-gray-400 text-center"> 
                 Enjoy your favorite tunes and discover new music!
               </p>
-                {/* <p className="text-white text-center">{songname}</p> */}
-                <div>
-  <h3>Track: {songname}</h3>
-  <a href={`${url}`} target="_blank">Play on Spotify</a>
-</div>
+            <div className="text-white">
+              <a href={`${url}`} target="_blank" rel="noopener noreferrer">{songname}</a>
+            </div>
 
               <button
                 onClick={() => setShowPreview(!showPreview)}
