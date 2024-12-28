@@ -2,27 +2,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 import React, { useState } from "react";
-const client_id = "";
-const client_secret = "";
+import {getAPI} from '../Components/Apistore' 
 
-export const getAPI = async () => {
-  try {
-    console.log("access to api calling ...");
-    const req = await fetch("https://accounts.spotify.com/api/token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: `grant_type=client_credentials&client_id=${client_id}&client_secret=${client_secret}`,
-    });
-    const token = await req.json();
-    console.log(token.access_token);
-
-    return token;
-  } catch (e) {
-    console.error("Error in API handling:", e);
-  }
-};
 
 export const Happy: React.FC = () => {
     const [showPreview, setShowPreview] = useState(false);
@@ -59,7 +40,7 @@ export const Happy: React.FC = () => {
         const tracks = await fetch(
       `https://api.spotify.com/v1/albums/${id}/tracks`,
       {
-        method: "GET",
+        method: "GET", 
         headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token.access_token,

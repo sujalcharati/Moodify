@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import {getAPI} from "./Components/Happy";
+import {getAPI} from "./Components/Apistore";
 export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
