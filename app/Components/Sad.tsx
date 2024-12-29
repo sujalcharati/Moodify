@@ -1,7 +1,7 @@
 "use client";
 import dotenv from "dotenv";
 dotenv.config();
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {getAPI} from '../Components/Apistore' 
 
 
@@ -13,7 +13,7 @@ export const Sad: React.FC = () => {
     try {
       const token = await getAPI();
     const album = await fetch(
-      "https://api.spotify.com/v1/artists/4YRxDV8wJFPHPTeXepOstw/albums?include_groups=album,single&market=US&limit=10&offset=5",
+      "https://api.spotify.com/v1/playlist/3e6TSLJ5nVQfVBumXdJ7bl?si=7c67aaef53de4628/albums?include_groups=album,single&market=US&limit=10&offset=5",
       {
         method: "GET",
         headers: {
@@ -31,36 +31,40 @@ export const Sad: React.FC = () => {
       console.error("Error fetching artist:", e);
     }
   }
- getAlbum();
- const [songname, setSongname] =useState('');
- const [url,setUrl] = useState('');
- async function getSongs() {
-    try {
-        const token = await getAPI();
-        const tracks = await fetch(
-      `https://api.spotify.com/v1/albums/${id}/tracks`,
-      {
-        method: "GET", 
-        headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token.access_token,
-        },
-      }
-    );
 
-    const songs = await tracks.json();
-    console.log(songs.items);
-    // const allsongs = songs.items.map((song: any) => {
+  useEffect(()=>{
+    getAlbum()
+  },[])
+
+//  const [songname, setSongname] =useState('');
+//  const [url,setUrl] = useState('');
+//  async function getSongs() {
+    // try {
+    //     const token = await getAPI();
+    //     const tracks = await fetch(
+    //   `https://api.spotify.com/v1/albums/${id}/tracks`,
+    //   {
+    //     method: "GET", 
+    //     headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: "Bearer " + token.access_token,
+    //     },
+    //   }
+    // );
+
+    // const songs = await tracks.json();
+    // console.log(songs.items);
+    // // const allsongs = songs.items.map((song: any) => {
     //   setSongname(allsongs);
     //   setUrl(song.external_urls.spotify);
     // });
-}
-     catch (e) {
-        console.error("Error fetching artist:", e);
-      }
- }   
+// }
+//      catch (e) {
+//         console.error("Error fetching artist:", e);
+//       }
+//  }   
 
-getSongs();
+// getSongs();
   
 
   return (
@@ -75,7 +79,7 @@ getSongs();
           width: "100vw",
         }}
       >
-          <h1 className="text-6xl font-bold mb-4 text-center text-white">Your thing's </h1>
+          <h1 className="text-4xl font-bold mb-4 text-center text-white">Feeling Sad? Let's slow things down... </h1>
          <div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg w-96 h-128 p-4 rounded-lg shadow-lg overflow-y-auto">
                 <h2 className=" text-white">
               Your Playlist
@@ -84,7 +88,7 @@ getSongs();
                 Enjoy your favorite tunes and discover new music!
               </p>
             <div className="text-white">
-              <a href={`${url}`} target="_blank" rel="noopener noreferrer">{songname}</a>
+              {/* <a href={`${url}`} target="_blank" rel="noopener noreferrer">{songname}</a> */}
             </div>
 
               <button
@@ -105,7 +109,7 @@ getSongs();
             <div className="p-4 bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg shadow-md w-80 fixed top-0 right-0 mr-4 mt-4">
               <h2 className="text-xl font-semibold text-center text-gray-200 mb-2">Fun Activity</h2> 
               <ul className="text-gray-200">
-                {["Call or video chat with your best friend or a loved one.", "Write a poem or short story about something that made you smile", "Host a mini picnic on your balcony or in your backyard"].map((task, index) => (
+                {["Take a walk.", "Wrap yourself in a cozy blanket, grab a cup of tea, and watch your favorite comfort show", "Host a mini picnic on your balcony or in your backyard"].map((task, index) => (
                   <li key={index} className="flex items-center mb-2">
                     <input
                       type="checkbox"

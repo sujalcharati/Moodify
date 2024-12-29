@@ -1,7 +1,7 @@
 "use client";
 import dotenv from "dotenv";
 dotenv.config();
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {getAPI} from '../Components/Apistore' 
 
 
@@ -31,7 +31,10 @@ export const Happy: React.FC = () => {
       console.error("Error fetching artist:", e);
     }
   }
- getAlbum();
+//  getAlbum();
+useEffect(() => {
+  getAlbum();
+}, []);
  const [songname, setSongname] =useState('');
  const [url,setUrl] = useState('');
  async function getSongs() {
