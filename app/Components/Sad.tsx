@@ -8,12 +8,14 @@ import {getAPI} from '../Components/Apistore'
 export const Sad: React.FC = () => {
     const [showPreview, setShowPreview] = useState(false);
 
-    const [id,setId] =useState('');
+    const [songname,setSongname] =useState('');
+    //  const [url,setUrl] = useState('');
+
   async function getAlbum() {
     try {
       const token = await getAPI();
     const album = await fetch(
-      "https://api.spotify.com/v1/playlist/3e6TSLJ5nVQfVBumXdJ7bl?si=7c67aaef53de4628/albums?include_groups=album,single&market=US&limit=10&offset=5",
+      "https://api.spotify.com/v1/playlists/2sOMIgioNPngXojcOuR4tn/tracks?market=US&fields=items(added_by.id,track(name,href,album(name,href)))&limit=10&offset=5",
       {
         method: "GET",
         headers: {
@@ -22,12 +24,14 @@ export const Sad: React.FC = () => {
         },
       }
     );
-      const getalbumlist = await album.json();
-      console.log(getalbumlist.items[0].id);
-      setId(getalbumlist.items[0].id);
-
-      return getalbumlist;
-    } catch (e) {
+    const getalbumlist = await album.json();
+    console.log(getalbumlist);
+   
+   
+      setSongname(getalbumlist.items[0].track.name);
+    //   return getalbumlist;
+    } 
+    catch (e) {
       console.error("Error fetching artist:", e);
     }
   }
@@ -88,7 +92,8 @@ export const Sad: React.FC = () => {
                 Enjoy your favorite tunes and discover new music!
               </p>
             <div className="text-white">
-              {/* <a href={`${url}`} target="_blank" rel="noopener noreferrer">{songname}</a> */}
+              {/* <a href={`${url}`} target="_blank" rel="noopener noreferrer"> {songname}</a> */}
+              {songname}
             </div>
 
               <button
@@ -98,12 +103,7 @@ export const Sad: React.FC = () => {
                 {showPreview ? "Hide Preview" : "Show Preview"}
               </button>
               {showPreview && (
-                <iframe
-                  src="https://open.spotify.com/embed/artist/4YRxDV8wJFPHPTeXepOstw"
-                  width="300"
-                  height="380"
-                  allow="encrypted-media"
-                ></iframe>
+              <iframe style={{ borderRadius: "12px" }} src="https://open.spotify.com/embed/playlist/2sOMIgioNPngXojcOuR4tn?utm_source=generator" width="100%" height="380" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
               )}
             </div>
             <div className="p-4 bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg shadow-md w-80 fixed top-0 right-0 mr-4 mt-4">
