@@ -28,7 +28,8 @@ export const Sad: React.FC = () => {
     console.log(getalbumlist);
    
    
-      setSongname(getalbumlist.items[0].track.name);
+    const songNames = getalbumlist.items.map((item: any) => item.track.name).join(", ");
+    setSongname(songNames);
     //   return getalbumlist;
     } 
     catch (e) {
@@ -39,38 +40,7 @@ export const Sad: React.FC = () => {
   useEffect(()=>{
     getAlbum()
   },[])
-
-//  const [songname, setSongname] =useState('');
-//  const [url,setUrl] = useState('');
-//  async function getSongs() {
-    // try {
-    //     const token = await getAPI();
-    //     const tracks = await fetch(
-    //   `https://api.spotify.com/v1/albums/${id}/tracks`,
-    //   {
-    //     method: "GET", 
-    //     headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: "Bearer " + token.access_token,
-    //     },
-    //   }
-    // );
-
-    // const songs = await tracks.json();
-    // console.log(songs.items);
-    // // const allsongs = songs.items.map((song: any) => {
-    //   setSongname(allsongs);
-    //   setUrl(song.external_urls.spotify);
-    // });
-// }
-//      catch (e) {
-//         console.error("Error fetching artist:", e);
-//       }
-//  }   
-
-// getSongs();
   
-
   return (
     <div>
       <div
