@@ -68,7 +68,7 @@ getSongs();
       <div
         style={{
           backgroundImage:
-            "url('https://plus.unsplash.com/premium_photo-1664298006973-e98eb94d006c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+            "url('https://plus.unsplash.com/premium_photo-1664298006973-e98eb94d006c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D ')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "100vh",
@@ -102,7 +102,7 @@ getSongs();
                 ></iframe>
               )}
             </div>
-            <div className="p-4 bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg shadow-md w-80 fixed top-0 right-0 mr-4 mt-4">
+            <div className="p-4 bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg shadow-md w-80 fixed  mr-4 mt-4">
               <h2 className="text-xl font-semibold text-center text-gray-200 mb-2">Fun Activity</h2> 
               <ul className="text-gray-200">
                 {["Call or video chat with your best friend or a loved one.", "Write a poem or short story about something that made you smile", "Host a mini picnic on your balcony or in your backyard"].map((task, index) => (
