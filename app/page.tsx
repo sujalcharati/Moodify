@@ -1,30 +1,29 @@
 "use client"
 import Link from "next/link";
 import {getAPI} from "./Components/Apistore";
-import { Openweather } from "./Components/Weatherapi";
-export default function Home() {
-  return (
+// import { Openweather } from "./Components/Weatherapi";
+
+
+export default function Home() {  
+
+
+return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <h1 className="text-6xl font-bold mb-4 text-center">What's your mood today?</h1>
       <div>
 
       <div className="flex flex-row items-center justify-center mb-8">
         <p className="text-lg mr-4 text-center">Select your mood from below and where are you from</p>
-        <Openweather/>
         {/* <input
-          value={ city }
-          placeholder="Enter your place"
-          onChange={(e) => {
-            setCity(e.target.value);
-            if (e.target.value === '') {
-                setWeatherData(null);
-            }
-          }}
           className="p-2 border border-black-300 rounded mr-4"
+          onChange={(e) => setCity(e.target.value)}
         />
-        <button onClick={openweather} className="p-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600">
+        <button 
+          className="p-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600"
+          onClick={ Openweather } >
           Submit
         </button> */}
+        {/* < Openweather/> */}
       </div>
       </div>
       <div className="grid grid-cols-2 gap-4">

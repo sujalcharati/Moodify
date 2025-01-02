@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import React, { useEffect, useState } from "react";
 import {getAPI} from '../Components/Apistore' 
+import { Openweather } from '../Components/Weatherapi';
 
 
 export const Happy: React.FC = () => {
@@ -52,18 +53,23 @@ useEffect(() => {
     );
 
     const songs = await tracks.json();
+    if (songs.items.length > 0) {
+      setSongname(songs.items[0].name);
+      setUrl(songs.items[0].external_urls.spotify);
+    }
     console.log(songs.items);
-    // const allsongs = songs.items.map((song: any) => {
-    //   setSongname(allsongs);
-    //   setUrl(song.external_urls.spotify);
-    // });
+  
 }
      catch (e) {
         console.error("Error fetching artist:", e);
       }
  }   
 
-getSongs();
+useEffect(() => {
+  if (id) {
+    getSongs();
+  }
+}, [id]);
   
 
   return (
@@ -121,7 +127,7 @@ getSongs();
               </ul>             
             </div>
             
-              
+                    {<Openweather /> }              
              
             </div>
             </div>
