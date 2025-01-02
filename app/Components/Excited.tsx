@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import React, { useState } from "react";
 import {getAPI} from '../Components/Apistore' 
+import { Openweather } from "./Weatherapi";
 
 
 export const Excited: React.FC = () => {
@@ -118,6 +119,7 @@ getSongs();
               </ul>             
             </div>
             
+                                  {<Openweather /> }              
               
              
             </div>

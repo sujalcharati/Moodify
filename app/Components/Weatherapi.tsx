@@ -21,7 +21,6 @@ export const Openweather = () => {
   };
 
   useEffect(() => {
-    // fetchWeather();
   }, []);
 
   return (

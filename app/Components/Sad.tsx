@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import React, { useEffect, useState } from "react";
 import {getAPI} from '../Components/Apistore' 
+import { Openweather } from "./Weatherapi";
 
 
 export const Sad: React.FC = () => {
@@ -93,6 +94,7 @@ export const Sad: React.FC = () => {
             </div>
             
               
+                                 {<Openweather /> }              
              
             </div>
             </div>
