@@ -1,7 +1,7 @@
 "use client"
 
-const client_id = "96f499b29dc0413fb1954b23adef82c4";
-const client_secret = "3401f68cf23a4fe3a4d262cd30070d05";
+const client_id = "";
+const client_secret = "";
 
 export const getAPI = async () => {
 

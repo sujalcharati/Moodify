@@ -24,31 +24,33 @@ export const Openweather = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex justify-between">
+      <div className="fixed right-0 bottom-32">
       <input
         value={city}
         placeholder="Enter your place"
         onChange={(e) => {
-          setCity(e.target.value);
-          if (e.target.value === "") {
-            setWeatherData(null);
-          }
+        setCity(e.target.value);
+        if (e.target.value === "") {
+          setWeatherData(null);
+        }
         }}
         className="p-2 border border-black-300 rounded mr-4"
       />
       <button
-        onClick={  fetchWeather }
+        onClick={fetchWeather}
         className="p-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600"
       >
         Submit
       </button>
+      </div>
       {weatherData && weatherData.current && (
-        <div>
-          <h3>Weather Data:</h3>
-          <p>Temperature: {weatherData.current.temp_c}°C</p>
-          <h3 className="text-2xl font-bold">Feels like: {weatherData.current.feelslike_c}°C</h3>
-          <h3 className="text-2xl font-bold">Wind: {weatherData.current.wind_kph} Km/hr</h3>
-        </div>
+      <div className="text-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg shadow-md w-80 fixed bottom-0 right-0 m-4">
+        <h3>Weather Data:</h3>
+        <p>Temperature: {weatherData.current.temp_c}°C</p>
+        <h3 className="text-2xl font-bold">Feels like: {weatherData.current.feelslike_c}°C</h3>
+        <h3 className="text-2xl font-bold">Wind: {weatherData.current.wind_kph} Km/hr</h3>
+      </div>
       )}
     </div>
   );

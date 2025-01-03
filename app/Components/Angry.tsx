@@ -95,15 +95,10 @@ getSongs();
                 {showPreview ? "Hide Preview" : "Show Preview"}
               </button>
               {showPreview && (
-                <iframe
-                  src="https://open.spotify.com/embed/artist/4YRxDV8wJFPHPTeXepOstw"
-                  width="300"
-                  height="380"
-                  allow="encrypted-media"
-                ></iframe>
+              <iframe style={{ borderRadius: "12px" }} src="https://open.spotify.com/embed/playlist/3JNWpteYvH3ynMcyPcvxfx?utm_source=generator" width="100%" height="380" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
               )}
             </div>
-            <div className="p-4 bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg shadow-md w-80 fixed  mr-4 mt-4">
+            <div className="p-4 bg-gray-100 bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg shadow-md w-80 fixed top-0 right-0  mr-4 mt-4">
               <h2 className="text-xl font-semibold text-center text-gray-200 mb-2">Fun Activity</h2> 
               <ul className="text-gray-200">
                 {["Call or video chat with your best friend or a loved one.", "Write a poem or short story about something that made you smile", "Host a mini picnic on your balcony or in your backyard"].map((task, index) => (
