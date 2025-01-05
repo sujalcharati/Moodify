@@ -13,7 +13,7 @@ return (
       <div>
 
       <div className="flex flex-row items-center justify-center mb-8">
-        <p className="text-lg mr-4 text-center">Select your mood from below and where are you from</p>
+        <p className="text-lg mr-4 text-center">Select your mood from below</p>
         {/* <input
           className="p-2 border border-black-300 rounded mr-4"
           onChange={(e) => setCity(e.target.value)}
